@@ -4,7 +4,7 @@ const testController = require("../controllers/testController");
 
 // BaseUrl/api/test
 
-router.get("/db", testController.testDB);
+router.get("/dbtest", testController.testDB);
 
 
 module.exports = router;

@@ -18,16 +18,10 @@ app.use("/health", (req,res)=>{
     });
 });
 
-app.use("/", (req,res)=>{
-    res.json({
-        status: "success",
-        message: "Welcome"
-    });
-});
 
 app.use("/api", authRoutes);
 app.use("/api", serviceRoutes);
-app.use("/test", testRoute);
+app.use("/api", testRoute);
 
 app.listen(process.env.PORT, () => {
     console.log(`Server running on port ${process.env.PORT}`);
