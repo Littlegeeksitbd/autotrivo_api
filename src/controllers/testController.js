@@ -4,7 +4,6 @@ exports.testDB = async (req, res) => {
 
     try {
         const res = await pool.query("SELECT NOW()");
-       // console.log(res.rows)
         res.json(res.rows);
 
     } catch (error) {
