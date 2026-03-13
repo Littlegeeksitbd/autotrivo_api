@@ -5,8 +5,7 @@ exports.testDB = async (req, res) => {
     try {
         const res = await pool.query("SELECT NOW()");
        // console.log(res.rows)
-        res.json({response:res.rows ,
-        url: process.env.DATABASE_URL});
+        res.json(res.rows);
 
     } catch (error) {
         res.status(500).json(error.message);
