@@ -75,6 +75,20 @@ exports.createTables = async (req, res) => {
       );
     `);
 
+        await pool.query(`
+      CREATE TABLE IF NOT EXISTS payment_info (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(50),
+        mehtod VARCHAR(50),
+        merchant_id VARCHAR(50),
+        channel VARCHAR(150),
+        status VARCHAR(50) DEFAULT 'active',
+        note TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+
         res.json({ success: true, message: "Tables created successfully" });
 
     } catch (error) {

@@ -4,6 +4,7 @@ require("dotenv").config();
 
 const authRoutes = require("./src/routes/authRoutes");
 const serviceRoutes = require("./src/routes/serviceRoutes");
+const paymentRoutes = require("./src/routes/paymentRoutes");
 const testRoute = require("./src/routes/testRoute");
 
 const app = express();
@@ -21,6 +22,7 @@ app.use("/health", (req,res)=>{
 
 app.use("/api/auth", authRoutes);
 app.use("/api/service", serviceRoutes);
+app.use("/api/payment", paymentRoutes);
 app.use("/api/test", testRoute);
 
 app.listen(process.env.PORT, () => {

@@ -37,6 +37,7 @@ exports.login = async (req, res) => {
             user: {
                 id: user.rows[0].id,
                 name: user.rows[0].name,
+                phone: user.rows[0].phone,
                 email: user.rows[0].email
             }
         });
@@ -56,7 +57,7 @@ exports.login = async (req, res) => {
 
 exports.register = async (req, res) => {
 
-    const { name, email, password } = req.body;
+    const { name, email, password, phone } = req.body;
 
     try {
 
@@ -78,10 +79,10 @@ exports.register = async (req, res) => {
 
         // Insert user
         const newUser = await pool.query(
-            `INSERT INTO users (name,email,password)
-             VALUES ($1,$2,$3)
+            `INSERT INTO users (name,email,password,phone)
+             VALUES ($1,$2,$3,$4)
              RETURNING id,name,email`,
-            [name, email, hashedPassword]
+            [name, email, hashedPassword,phone]
         );
 
         // Generate token
@@ -101,6 +102,7 @@ exports.register = async (req, res) => {
         });
 
     } catch (error) {
+        console.log(error)
 
         res.status(500).json({
             error: error.message
