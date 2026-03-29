@@ -72,3 +72,9 @@ INSERT INTO transactions
 VALUES
 (1, 10, 25.50, 'BINANCE12345', 'merchant_01', 'completed', 'USDT payment');
 ```
+
+## DB TABLES CREATING
+
+```dockerignore
+/api/test/makedb  (Very Careful)
+```
