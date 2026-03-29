@@ -76,5 +76,7 @@ VALUES
 ## DB TABLES CREATING
 
 ```dockerignore
-/api/test/makedb  (Very Careful)
+/api/test/makedb  (Make the db tables Very Careful)
+
+http://localhost:5000/api/service (POST Insert / GET)
 ```
