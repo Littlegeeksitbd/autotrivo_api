@@ -16,15 +16,17 @@ exports.getServices = async (req, res) => {
 
 };
 
+
 exports.insertService = async (req, res) => {
     try {
 
         const {
             name,
-            subtitle,
+            sub,
             description,
-            icon,
-            genre,
+            emoji,
+            color,
+            tag,
             price,
             type,
             games_count,
@@ -36,8 +38,8 @@ exports.insertService = async (req, res) => {
             status
         } = req.body;
 
-        // simple validation
-        if (!name || !subtitle || !icon || !genre || !price || !type) {
+        // validation
+        if (!name || !sub || !emoji || !color || !tag || !price || !type) {
             return res.status(400).json({
                 success: false,
                 message: "Required fields are missing"
@@ -46,17 +48,18 @@ exports.insertService = async (req, res) => {
 
         const result = await pool.query(
             `INSERT INTO services
-            (name, subtitle, description, icon, genre, price, type, games_count,
-            games_control, payments, support, live_demo_link, extra_data, status)
-            VALUES
-            ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)
-            RETURNING *`,
+             (name, sub, description, emoji, color, tag, price, type,
+              games_count, games_control, payments, support, live_demo_link, extra_data, status)
+             VALUES
+                 ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
+                 RETURNING *`,
             [
                 name,
-                subtitle,
+                sub,
                 description,
-                icon,
-                genre,
+                emoji,
+                color,
+                tag,
                 price,
                 type,
                 games_count,
@@ -83,9 +86,7 @@ exports.insertService = async (req, res) => {
         });
 
     }
-
-}
-
+};
 
 exports.getServices = async (req, res) => {
     try {
